@@ -24,9 +24,18 @@ public class PruebaEmpleados {
 	
 	
 	public static String actividadParticular(Planta a){	
+            if(a instanceof Directivo){
+                Directivo b = (Directivo)a;
+                return b.administrar() + " " + b.definirAumentos() + " " + b.reportarLogros();
+            }
+            if(a instanceof Secretaria){
+                Secretaria b = (Secretaria)a;
+                return b.llenaRegistros();
+            }
+           
 		/*
 		 * TODO:
-		 * Regresa una cadena con las actividades particulares del objeto de Planta que se recibe de parámetro
+		 * Regresa una cadena con las actividades particulares del objeto de Planta que se recibe de parï¿½metro
 		 */
 		return "";
 	}
@@ -34,9 +43,13 @@ public class PruebaEmpleados {
 	
 	
 	public static String queHace(Administrativo d){
+            if(d instanceof Directivo){
+                Directivo b = (Directivo)d;
+                return b.administrar() + " " + b.definirAumentos() + " " + b.reportarLogros();
+            }
 		/*
 		 * TODO:
-		 * Regresa una cadena con las actividades que realiza el objeto con un rol de Administrativo que se recibe de parámetro
+		 * Regresa una cadena con las actividades que realiza el objeto con un rol de Administrativo que se recibe de parï¿½metro
 		 */
 		return "";
 	}

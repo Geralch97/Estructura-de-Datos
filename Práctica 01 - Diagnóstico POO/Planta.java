@@ -18,7 +18,7 @@ public abstract class Planta extends Empleado {
 		
 		this.prestaciones = prestaciones;
 		
-		if (this.pagoSemanal  > 0 && this.pagoSemanal < MAXIMO_SUELDO) {
+		if (this.pagoSemanal  >= 0 && this.pagoSemanal <= MAXIMO_SUELDO) {
 			this.pagoSemanal = pagoSemanal;
 			
 		}
@@ -42,9 +42,10 @@ public abstract class Planta extends Empleado {
    
    
     private String regresaPrestaciones() {
+        String s = "";
     	for (int i = 0; i < this.prestaciones.length; i++) {
-    		if(this.prestaciones[i] = true) {
-    			String s = new String(this.prestaciones[i])
+    		if(this.prestaciones[i]) {
+    			s +=(PRESTACIONES[i]) + ", ";
     			
     		}
     			
@@ -58,18 +59,33 @@ public abstract class Planta extends Empleado {
     	 * correspondiente es PRESTACIONES[0] (que es “Vales despensa”).
     	 */
     	
-    	return "";
+    	return s;
 	}
 	
 	
 	public double sueldo() { 
-		double sueldo = pagoSemanal;
+		double sueldo = this.pagoSemanal;
 		for (int i = 0; i < this.prestaciones.length; i++) {
-			if(this.prestaciones[i] = true) {
-				sueldo += PAGO_PRESTACIONES[i]
-				
-			}
-			
+                    switch(i){
+                        case 0: case 6: case 7:
+                            if(this.prestaciones[i]){
+                                sueldo += PAGO_PRESTACIONES[i];
+                                break;
+                            }
+                        case 1: case 2: case 5:
+                            if(this.prestaciones[i]){
+                                sueldo += PAGO_PRESTACIONES[i]*this.pagoSemanal;
+                                break;
+                            }
+                        case 3: case 4:
+                            if(this.prestaciones[i]){
+                                sueldo += PAGO_PRESTACIONES[i]*this.diaVacaciones;
+                                break;
+                            }
+                        default:
+                        
+                    }
+                    	
 		}
 		/*
 		 * TODO:
@@ -99,6 +115,7 @@ public abstract class Planta extends Empleado {
 		return this.nombrePuesto;
 	}
 	
+        abstract void setNombrePuesto(String nombrePuesto);
 	/*
 	 * TODO:
 	 * Crear método público abstracto de nombre setNombrePuesto.

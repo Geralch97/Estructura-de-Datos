@@ -10,22 +10,29 @@ public class Directivo extends Planta implements Administrativo{
    
    
 	public void setBono( double bono ) { 
+            if (bono >= 0 && bono <= BONO_MAXIMO){
+                this.bonoExtra = bono;
+            }
+            else{
+                this.bonoExtra = 0;
+            }
 		/*
 		 * TODO: 
-		 * Método que actualiza el atributo de instancia bonoExtra.
-		 * Validar que el bono que se recibe de parámetro esté en el rango de 0 y BONO_MAXIMO (que se encuentra en la interfaz).
+		 * Mï¿½todo que actualiza el atributo de instancia bonoExtra.
+		 * Validar que el bono que se recibe de parï¿½metro estï¿½ en el rango de 0 y BONO_MAXIMO (que se encuentra en la interfaz).
 		 * De lo contrario se le asigna 0.
 		 */
 	}
    
    
-	public double sueldo() { 
+	public double sueldo() {
+            
 		/*
 		 * TODO:
 		 * Calcula el sueldo de un Directivo de la siguiente manera:
-		 * Invocar al método sueldo del padre y sumarle el bonoExtra.
+		 * Invocar al mï¿½todo sueldo del padre y sumarle el bonoExtra.
 		 */
-		return 0.0;
+		return super.sueldo() + bonoExtra;
 	}
    
    public String administrar() {

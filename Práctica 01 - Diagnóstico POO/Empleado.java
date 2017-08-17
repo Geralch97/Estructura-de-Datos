@@ -1,3 +1,5 @@
+package Practica1;
+
 public abstract class Empleado {
 
 	protected String nombre;
